@@ -66,6 +66,7 @@ const generateIngredientDOM = (ingredient) => {
   checkbox.setAttribute('type', 'checkbox')
   checkbox.checked = ingredient.haveIngredient
   ingredName.textContent = ingredient.ingredientName
+  remove.innerText = 'Remove'
   containerEl.appendChild(checkbox)
   containerEl.appendChild(ingredName)
   containerEl.appendChild(remove)
