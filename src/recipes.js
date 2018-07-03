@@ -105,7 +105,6 @@ const updateRecipe = (id, updates) => {
   return recipe
 }
 
-createRecipe()
 recipes = loadRecipes()
 
 export { getRecipes, createRecipe, removeRecipe, sortRecipes, updateRecipe }
