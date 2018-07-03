@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recipes</title>
+  <link rel="icon" href="/images/favicon.png">
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <h1 class="header__title">Recipes</h1>
+      <h2 class="header__subtitle">Take recipes and never forget</h2>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="actions__container actions__container--spaced">
+      <a href="/index.html">Home</a>
+      <span id="timestamp"></span>
+    </div>
+  </div>
+  <div class="container">
+    <input id="note-title" class="title-input" placeholder="Note title" type="text">
+    <textarea id="note-body" class="body-input" placeholder="Enter note text"></textarea>
+    <button id="remove-note" class="button button--secondary">Remove note</button>
+  </div>
+  <script src="/scripts/edit-bundle.js"></script>
+</body>
+</html>
