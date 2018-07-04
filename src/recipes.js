@@ -117,6 +117,12 @@ const addIngredient = (id, ingredientName) => {
   return recipe
 }
 
+const toggleIngredient = (ingredient) => {
+  ingredient.haveIngredient = !ingredient.haveIngredient
+  saveRecipes()
+}
+
+
 recipes = loadRecipes()
 
-export { getRecipes, createRecipe, removeRecipe, sortRecipes, updateRecipe, addIngredient }
+export { getRecipes, createRecipe, removeRecipe, sortRecipes, updateRecipe, addIngredient, toggleIngredient }

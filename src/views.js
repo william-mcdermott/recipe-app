@@ -1,5 +1,5 @@
 import { getFilters } from './filters'
-import { getRecipes, toggleRecipe, removeRecipe } from './recipes'
+import { getRecipes, toggleRecipe, removeRecipe, toggleIngredient } from './recipes'
 
 
 // renderRecipes
@@ -67,7 +67,7 @@ const generateIngredientDOM = (ingredient) => {
   checkbox.setAttribute('type', 'checkbox')
   checkbox.checked = ingredient.haveIngredient
   checkbox.addEventListener('click', () => {
-    toggleIngredient()
+    toggleIngredient(ingredient)
   })
   ingredName.textContent = ingredient.ingredientName
   remove.innerText = 'Remove'
