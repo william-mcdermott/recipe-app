@@ -1,5 +1,6 @@
-import { initializeEditPage, generateLastEdited, updateTimestamp } from './views'
-import { updateRecipe, removeRecipe, addIngredient } from './recipes'
+import { initializeEditPage, generateLastEdited } from './views'
+import { updateRecipe, removeRecipe } from './recipes'
+import { addIngredient } from './ingredients'
 
 const titleElement = document.querySelector('#recipe-name')
 const bodyElement = document.querySelector('#recipe-instructions')

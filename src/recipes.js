@@ -1,4 +1,4 @@
-import { renderIngredients } from './views.js'
+import { renderIngredients } from './ingredients.js'
 
 import uuidv4 from 'uuid/v4'
 import moment from 'moment'
@@ -101,28 +101,6 @@ const updateRecipe = (id, updates) => {
   return recipe
 }
 
-const addIngredient = (id, ingredientName) => {
-  const recipe = recipes.find((recipe) => recipe.id === id)
-  if (!recipe) {
-    return
-  }
-  const ingredientId = uuidv4()
-  recipe.ingredients.push({
-    ingredientId,
-    ingredientName,
-    haveIngredient: false
-  })
-  saveRecipes()
-  renderIngredients(recipe)
-  return recipe
-}
-
-const toggleIngredient = (ingredient) => {
-  ingredient.haveIngredient = !ingredient.haveIngredient
-  saveRecipes()
-}
-
-
 recipes = loadRecipes()
 
-export { getRecipes, createRecipe, removeRecipe, sortRecipes, updateRecipe, addIngredient, toggleIngredient }
+export { getRecipes, createRecipe, removeRecipe, sortRecipes, updateRecipe, saveRecipes }

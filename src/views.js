@@ -1,5 +1,6 @@
 import { getFilters } from './filters'
-import { getRecipes, toggleRecipe, removeRecipe, toggleIngredient } from './recipes'
+import { getRecipes, toggleRecipe, removeRecipe } from './recipes'
+import { toggleIngredient, renderIngredients } from './ingredients'
 
 
 // renderRecipes
@@ -25,22 +26,6 @@ const renderRecipes = () => {
   }
 }
 
-const renderIngredients = (recipe) => {
-  const ingredients = recipe.ingredients
-  const ingredientEl = document.querySelector('#ingredient-list')
-  ingredientEl.innerHTML = ''
-  if (ingredients.length > 0) {
-    ingredients.forEach((ingredient) => {
-      ingredientEl.appendChild(generateIngredientDOM(ingredient))
-    })
-  } else {
-    const emptyMessage = document.createElement('p')
-    emptyMessage.classList.add('empty-message')
-    emptyMessage.innerText = 'There are no ingredients to show'
-    ingredientEl.appendChild(emptyMessage)
-  }
-}
-
 // generateRecipeDOM
 // Arguments: recipe
 // Return value: the recipe element
@@ -57,25 +42,6 @@ const generateRecipeDOM = (recipe) => {
   containerEl.classList.add('list-item__container')
   renderRecipe.appendChild(containerEl)
   return renderRecipe
-}
-
-const generateIngredientDOM = (ingredient) => {
-  const containerEl = document.createElement('li')
-  const checkbox = document.createElement('input')
-  const ingredName = document.createElement('span')
-  const remove = document.createElement('span')
-  checkbox.setAttribute('type', 'checkbox')
-  checkbox.checked = ingredient.haveIngredient
-  checkbox.addEventListener('click', () => {
-    toggleIngredient(ingredient)
-  })
-  ingredName.textContent = ingredient.ingredientName
-  remove.innerText = 'Remove'
-  containerEl.appendChild(checkbox)
-  containerEl.appendChild(ingredName)
-  containerEl.appendChild(remove)
-  containerEl.classList.add('list-item__container')
-  return containerEl
 }
 
 // generateSummaryDOM
@@ -119,4 +85,4 @@ const initializeEditPage = (recipeId) => {
 
 
 // Make sure to set up the exports
-export { renderRecipes, generateRecipeDOM, generateSummaryDOM, initializeEditPage, renderIngredients }
+export { renderRecipes, generateRecipeDOM, generateSummaryDOM, initializeEditPage }
