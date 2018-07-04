@@ -1,3 +1,5 @@
+import { renderIngredients } from './views.js'
+
 import uuidv4 from 'uuid/v4'
 import moment from 'moment'
 
@@ -26,17 +28,11 @@ const createRecipe = () => {
   const now = moment().valueOf()
   recipes.push({
     id,
-    name: 'Chicken Parm',
+    name: '',
     instructions: '',
     createdAt: now,
     updatedAt: now,
-    ingredients: [{
-      ingredientName: 'chicken',
-      haveIngredient: false
-    }, {
-      ingredientName: 'Pasta',
-      haveIngredient: false
-    }]
+    ingredients: []
   })
   saveRecipes()
   return id
@@ -93,18 +89,34 @@ const updateRecipe = (id, updates) => {
   if (!recipe) {
     return
   }
-  if (typeof updates.title === 'string') {
-    recipe.title = updates.title
+  if (typeof updates.name === 'string') {
+    recipe.name = updates.name
     recipe.updatedAt = moment().valueOf()
   }
-  if (typeof updates.body === 'string') {
-    recipe.body = updates.body
+  if (typeof updates.instructions === 'string') {
+    recipe.instructions = updates.instructions
     recipe.updatedAt = moment().valueOf()
   }
   saveRecipes()
   return recipe
 }
 
+const addIngredient = (id, ingredientName) => {
+  const recipe = recipes.find((recipe) => recipe.id === id)
+  if (!recipe) {
+    return
+  }
+  const ingredientId = uuidv4()
+  recipe.ingredients.push({
+    ingredientId,
+    ingredientName,
+    haveIngredient: false
+  })
+  saveRecipes()
+  renderIngredients(recipe)
+  return recipe
+}
+
 recipes = loadRecipes()
 
-export { getRecipes, createRecipe, removeRecipe, sortRecipes, updateRecipe }
+export { getRecipes, createRecipe, removeRecipe, sortRecipes, updateRecipe, addIngredient }

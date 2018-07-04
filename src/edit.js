@@ -1,30 +1,36 @@
 import { initializeEditPage, generateLastEdited, updateTimestamp } from './views'
-import { updateRecipe, removeRecipe } from './recipes'
+import { updateRecipe, removeRecipe, addIngredient } from './recipes'
 
-const titleElement = document.querySelector('#recipe-title')
-const bodyElement = document.querySelector('#recipe-body')
+const titleElement = document.querySelector('#recipe-name')
+const bodyElement = document.querySelector('#recipe-instructions')
 const removeElement = document.querySelector('#remove-recipe')
+const addIngredientElement = document.querySelector('#add-ingredient')
 const recipeId = location.hash.substring(1)
 
 initializeEditPage(recipeId)
 
 titleElement.addEventListener('input', (e) => {
   const recipe = updateRecipe(recipeId, {
-    title: e.target.value
+    name: e.target.value
   })
-  updateTimestamp(recipe)
 })
 
 bodyElement.addEventListener('input', (e) => {
   const recipe = updateRecipe(recipeId, {
-    body: e.target.value
+    instructions: e.target.value
   })
-  updateTimestamp(recipe)
 })
 
 removeElement.addEventListener('click', () => {
   removeRecipe(recipeId)
   location.assign('/index.html')
+})
+
+addIngredientElement.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const { value } = e.target[0]
+  addIngredient(recipeId, value)
+  e.target[0].value = ''
 })
 
 window.addEventListener('storage', (e) => {
